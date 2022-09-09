@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth', [ \App\Http\Controllers\UserController::class, 'auth' ]);
 Route::post('/reg', [ \App\Http\Controllers\UserController::class, 'reg' ]);
+Route::post('user/requests', [\App\Http\Controllers\UserController::class, 'getRequests'])->middleware(\App\Http\Middleware\Auth::class);
 
 Route::post('request/create', [ \App\Http\Controllers\RequestController::class, 'create' ])->middleware(\App\Http\Middleware\Auth::class);
 Route::post('request/remove', [ \App\Http\Controllers\RequestController::class, 'remove' ])->middleware(\App\Http\Middleware\Auth::class);
