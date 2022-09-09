@@ -18,9 +18,9 @@ class Auth
     public function handle(Request $request, Closure $next)
     {
         if ($request->header('Authorization')) {
-            $auth = explode(' ', $request->header('Authorization'))[0];
+            $auth = explode(' ', $request->header('Authorization'))[1];
             $user = User::query()->where('api_token', '=', $auth)->get()->all();
-            if (count($user)) {
+            if (count($user) > 0) {
                 $user = $user[0];
                 $request->setUserResolver(function () use ($user) {
                    return $user;
